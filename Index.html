@@ -2,66 +2,63 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Medha 💖 My Valentine</title>
+<title>Medha 💖 Valentine</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
   margin:0;
-  font-family:'Comic Sans MS', cursive;
+  font-family: 'Comic Sans MS', cursive;
   background: linear-gradient(135deg,#ff9a9e,#fad0c4);
   text-align:center;
   overflow:hidden;
 }
+
 .container{
   margin-top:40px;
+  position:relative;
 }
+
 img{
-  width:280px;
-  border-radius:30px;
-  box-shadow:0 15px 40px rgba(0,0,0,.3);
-  animation:bounce 2s infinite;
+  width:260px;
+  border-radius:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
-@keyframes bounce{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-15px);}
-}
-h1{
-  color:white;
-  font-size:2.6em;
-}
-p{
-  color:white;
-  font-size:1.3em;
-  padding:0 15px;
-}
-.buttons{
-  margin-top:25px;
-}
+
+h1{ color:white; font-size:2.4em; }
+p{ color:white; font-size:1.2em; }
+
 button{
-  padding:15px 30px;
-  font-size:20px;
+  padding:14px 28px;
+  font-size:18px;
   border:none;
-  border-radius:40px;
+  border-radius:30px;
   cursor:pointer;
+  margin:10px;
 }
+
 #yes{
   background:#ff4d6d;
   color:white;
-  box-shadow:0 8px 20px rgba(0,0,0,.3);
 }
+
 #no{
   background:white;
   color:#ff4d6d;
   position:absolute;
+  left:50%;
+  transform:translateX(-50%);
 }
+
 .heart{
   position:fixed;
   animation:float 4s linear infinite;
+  font-size:20px;
 }
+
 @keyframes float{
   0%{transform:translateY(0);opacity:1;}
-  100%{transform:translateY(-900px);opacity:0;}
+  100%{transform:translateY(-800px);opacity:0;}
 }
 </style>
 </head>
@@ -73,62 +70,52 @@ button{
   <h1>Medha 💕</h1>
   <p>
     Just like Bubu loves Dudu 🐻🐼<br>
-    My heart chose you 🥺💖<br><br>
-    Will you be my Valentine? 💘
+    Will you be my Valentine? 💖
   </p>
 
-  <div class="buttons">
-    <button id="yes" onclick="yesClick()">YES 🥰</button>
-    <button id="no" onmouseover="moveNo()">NO 🙈</button>
-  </div>
+  <button id="yes" onclick="yesClick()">YES 🥰</button>
+  <button id="no" onmouseover="moveNo()">NO 🙈</button>
 </div>
 
 <script>
-// AI Voice
-function speakLove(text){
+function speak(text){
   const msg = new SpeechSynthesisUtterance(text);
+  msg.lang = "en-IN";
   msg.rate = 0.9;
   msg.pitch = 1.2;
-  msg.lang = "en-IN";
   window.speechSynthesis.speak(msg);
 }
 
-window.onload = () => {
-  setTimeout(() => {
-    speakLove("Medha, just like Bubu loves Dudu, I love you so much. Will you be my Valentine?");
-  }, 1000);
-};
-
 function yesClick(){
-  speakLove("Yay Medha! You are my Dudu and I am your Bubu. Forever and always.");
+  speak("Yay Medha! You are my Dudu and I am your Bubu. Forever and always.");
+
   document.body.innerHTML = `
   <h1 style="margin-top:35vh;color:white;">
-    YAYYYY MEDHA 💖💍<br><br>
+    YAYYYY MEDHA 💖<br><br>
     You are my Dudu 🐼<br>
-    I am your Bubu 🐻<br><br>
-    Forever & Always 😘
+    I am your Bubu 🐻
   </h1>`;
 }
 
 function moveNo(){
-  let x=Math.random()*(window.innerWidth-120);
-  let y=Math.random()*(window.innerHeight-60);
-  let no=document.getElementById("no");
-  no.style.left=x+"px";
-  no.style.top=y+"px";
+  let x = Math.random() * (window.innerWidth - 100);
+  let y = Math.random() * (window.innerHeight - 50);
+  const no = document.getElementById("no");
+  no.style.left = x + "px";
+  no.style.top = y + "px";
 }
 
 setInterval(()=>{
-  const heart=document.createElement("div");
-  heart.className="heart";
-  heart.innerHTML=Math.random()>0.5?"❤":"💖";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.fontSize=Math.random()*25+15+"px";
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random()*100 + "vw";
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),4000);
-},250);
+},300);
 </script>
 
 </body>
 </html>
+
 
