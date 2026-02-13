@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Medha 💖 My Valentine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:'Comic Sans MS', cursive;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+  text-align:center;
+  overflow:hidden;
+}
+.container{
+  margin-top:40px;
+}
+img{
+  width:280px;
+  border-radius:30px;
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+}
+h1{
+  color:white;
+  font-size:2.6em;
+}
+p{
+  color:white;
+  font-size:1.3em;
+  padding:0 15px;
+}
+.buttons{
+  margin-top:25px;
+}
+button{
+  padding:15px 30px;
+  font-size:20px;
+  border:none;
+  border-radius:40px;
+  cursor:pointer;
+}
+#yes{
+  background:#ff4d6d;
+  color:white;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+}
+#no{
+  background:white;
+  color:#ff4d6d;
+  position:absolute;
+}
+.heart{
+  position:fixed;
+  animation:float 4s linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0);opacity:1;}
+  100%{transform:translateY(-900px);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <img src="https://i.pinimg.com/736x/64/93/4c/64934cb1e02a0faeab2a42f7a7f3e5a7.jpg">
+  <h1>Medha 💕</h1>
+  <p>
+    Just like Bubu loves Dudu 🐻🐼<br>
+    My heart chose you 🥺💖<br><br>
+    Will you be my Valentine? 💘
+  </p>
+
+  <div class="buttons">
+    <button id="yes" onclick="yesClick()">YES 🥰</button>
+    <button id="no" onmouseover="moveNo()">NO 🙈</button>
+  </div>
+</div>
+
+<script>
+// AI Voice
+function speakLove(text){
+  const msg = new SpeechSynthesisUtterance(text);
+  msg.rate = 0.9;
+  msg.pitch = 1.2;
+  msg.lang = "en-IN";
+  window.speechSynthesis.speak(msg);
+}
+
+window.onload = () => {
+  setTimeout(() => {
+    speakLove("Medha, just like Bubu loves Dudu, I love you so much. Will you be my Valentine?");
+  }, 1000);
+};
+
+function yesClick(){
+  speakLove("Yay Medha! You are my Dudu and I am your Bubu. Forever and always.");
+  document.body.innerHTML = `
+  <h1 style="margin-top:35vh;color:white;">
+    YAYYYY MEDHA 💖💍<br><br>
+    You are my Dudu 🐼<br>
+    I am your Bubu 🐻<br><br>
+    Forever & Always 😘
+  </h1>`;
+}
+
+function moveNo(){
+  let x=Math.random()*(window.innerWidth-120);
+  let y=Math.random()*(window.innerHeight-60);
+  let no=document.getElementById("no");
+  no.style.left=x+"px";
+  no.style.top=y+"px";
+}
+
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML=Math.random()>0.5?"❤":"💖";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=Math.random()*25+15+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),4000);
+},250);
+</script>
+
+</body>
+</html>
+
